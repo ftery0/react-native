@@ -1,20 +1,33 @@
 import { StatusBar } from "expo-status-bar";
-import {loginUser} from "./login"
+import { loginUser } from "./login";
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button, Image,TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 
 export default function App() {
   const [id, Setid] = React.useState("");
   const [password, Setpassword] = React.useState("");
+  const isValidInput = (input) => /^[a-zA-Z0-9]+$/.test(input);
 
   const handleLogin = () => {
-
+    if (id === "" || password === "") {
+      Alert.alert("경고", "아이디와 비밀번호를 입력하세요.");
+      return;
+    }
     loginUser(id, password);
   };
 
   return (
     <View style={styles.container}>
-      <View >
+      <View>
         <Image style={styles.image} source={require("./assets/ch.png")}></Image>
       </View>
       <View>
@@ -26,7 +39,7 @@ export default function App() {
         <TextInput
           style={styles.inputin}
           placeholder="아이디를 입력해주세요"
-          onChangeText={Setid}
+          onChangeText={(text) => isValidInput(text) && Setid(text)}
         ></TextInput>
       </View>
       <View style={styles.input}>
@@ -34,17 +47,21 @@ export default function App() {
         <TextInput
           style={styles.inputin}
           placeholder="비밀번호를 입력해주세요"
-          onChangeText={Setpassword}
+          onChangeText={(text) => isValidInput(text) && Setpassword(text)}
           password={true}
         ></TextInput>
       </View>
       <View style={styles.bt} backgroundColor="#F0F0F0">
-        <Button style={styles.btin} title="로그인" color="black" onPress={handleLogin}></Button>
+        <Button
+          style={styles.btin}
+          title="로그인"
+          color="black"
+          onPress={handleLogin}
+        ></Button>
       </View>
       <TouchableOpacity style={styles.mem}>
-          <Text style={styles.text}>회원가입</Text>
+        <Text style={styles.text}>회원가입</Text>
       </TouchableOpacity>
-
 
       <StatusBar style="auto" />
     </View>
@@ -98,8 +115,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   image: {
-    width:100,
-    height:100,
+    width: 100,
+    height: 100,
   },
   mem: {
     marginLeft: 285,
@@ -111,6 +128,4 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "gray",
   },
-
 });
-
