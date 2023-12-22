@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    marginBottom: 40,
+    marginBottom: 10,
   },
   id: {
     marginBottom: 5,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: "#F0F0F0",
     borderRadius: 10,
-    marginBottom: 35,
+    marginBottom: 30,
     paddingLeft: 10,
   },
   bt: {
@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
     height: 100,
   },
   mem: {
-    marginTop:15,
+    marginTop:20,
     marginLeft: 285,
-    marginBottom:100,
+    marginBottom:200,
     fontSize: 20,
   },
   memText: {

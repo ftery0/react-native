@@ -52,7 +52,8 @@ export default function LoginScreen({ navigation }) {
           style={styles.inputin}
           placeholder="비밀번호를 입력해주세요"
           onChangeText={(text) => isValidInput(text) && Setpassword(text)}
-          password={true}
+          value={password}
+          secureTextEntry
         ></TextInput>
       </View>
       <View style={styles.bt} backgroundColor="#F0F0F0">
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
   mem: {
     marginLeft: 285,
     marginTop: 20,
+    marginBottom:170,
     fontSize: 20,
   },
   text: {
