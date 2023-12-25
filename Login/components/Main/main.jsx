@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
         marginBottom:20,
       },
       List_Text : {
-        zIndex:5,
+        zIndex:10,
       }
 })

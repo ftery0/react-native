@@ -26,7 +26,8 @@ export default function LoginScreen({ navigation }) {
       Alert.alert("경고", "아이디와 비밀번호를 입력하세요.");
       return;
     }
-    if(id === "Lee" && password == "1234"){
+    const response = loginUser(id,password)
+    if(response == true){
         navigation.navigate('Main');
     }else {
         Alert.alert("경고", "로그인 정보가 맞지 않습니다");
