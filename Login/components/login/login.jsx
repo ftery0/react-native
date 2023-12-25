@@ -21,20 +21,18 @@ export default function LoginScreen({ navigation }) {
     navigation.navigate('Signup');
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (id === "" || password === "") {
       Alert.alert("경고", "아이디와 비밀번호를 입력하세요.");
       return;
     }
-    const response = loginUser(id,password)
-    if(response == true){
-        navigation.navigate('Main');
-    }else {
-        Alert.alert("경고", "로그인 정보가 맞지 않습니다");
+    const success = await loginUser(id, password);
+    if (success === true) {
+      navigation.navigate('Main');
+    } else {
+      Alert.alert("경고", "로그인 정보가 맞지 않습니다");
       return;
     }
-    
-    // loginUser(id, password);
   };
 
   return (
