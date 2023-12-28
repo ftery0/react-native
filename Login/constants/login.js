@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const SERVER_URL = 'http://localhost:8080'; 
+const SERVER_URL = 'http://localhost:8080/login'; 
 
 export const loginUser = async (id, password) => {
   try {
     const response = await axios.post(
-      `${SERVER_URL}/login`, 
+      SERVER_URL, 
       { id, password }
     );
 
