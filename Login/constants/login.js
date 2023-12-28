@@ -1,20 +1,21 @@
 import axios from 'axios';
 
-const SERVER_URL = 'http://localhost:8080'; 
+const SERVER_URL = 'http://localhost:8080/login'; 
 
 export const loginUser = async (id, password) => {
   try {
     const response = await axios.post(
-      `${SERVER_URL}/login`, 
+      SERVER_URL, 
       { id, password }
     );
 
     if (response.status === 200) {
+      console.log('로그인 성공:', response.data);
       return true
-      // console.log('로그인 성공:', response.data);
+      
       // navigation.navigate('Main');
     } else {
-      return false
+     return false
       // console.log('로그인 실패:', response.data);
     }
   } catch (error) {

@@ -4,7 +4,7 @@ import {CreatUser} from "../../constants/signup"
 
 export default function RegisterScreen({ navigation }) {
   const [id, setId] = useState("");
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -14,7 +14,7 @@ export default function RegisterScreen({ navigation }) {
 
 
   const handleSignup = () => {
-    if (!id || !name || !password || !confirmPassword) {
+    if (!id || !username || !password || !confirmPassword) {
       Alert.alert("경고", "모든 필드를 입력하세요.");
       return;
     }
@@ -23,7 +23,7 @@ export default function RegisterScreen({ navigation }) {
       Alert.alert("경고", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
       return;
     }
-    CreatUser(id,name,password);
+    CreatUser(id,username,password);
 
   };
 
@@ -50,7 +50,8 @@ export default function RegisterScreen({ navigation }) {
           style={styles.inputin}
           placeholder="이름"
           onChangeText={setName}
-          value={name}
+          value={username}
+          autoCorrect={false}
         />
       </View>
       <View>
