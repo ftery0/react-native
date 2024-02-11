@@ -1,38 +1,36 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Text, TextInput, Button, Alert, Image, TouchableOpacity } from "react-native";
-import { CreatUser } from "../../constants/signup";
-import { ViewProps } from "react-native";
-import { ButtonProps } from "react-native";
-
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Button,
+  Alert,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import UseSignup from "../../Hooks/auth/useSignup";
 export default function RegisterScreen({ navigation }: { navigation: any }) {
-  const [id, setId] = useState("");
-  const [username, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleRegister = () => {
-    navigation.navigate('Login');
-  }
-
-
-  const handleSignup = () => {
-    if (!id || !username || !password || !confirmPassword) {
-      Alert.alert("경고", "모든 필드를 입력하세요.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      Alert.alert("경고", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-      return;
-    }
-    CreatUser(id, username, password);
-
-  };
+  const {
+    id,
+    setId,
+    username,
+    setName,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    handleRegister,
+    handleSignup,
+  } = UseSignup(navigation);
 
   return (
     <View style={styles.container}>
       <View>
-        <Image style={styles.image} source={require("../../assets/ch.png")}></Image>
+        <Image
+          style={styles.image}
+          source={require("../../assets/ch.png")}
+        ></Image>
       </View>
       <View>
         <Text style={styles.text}>회원가입</Text>
@@ -77,14 +75,12 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         />
       </View>
       <View style={styles.bt}>
-        <Button
-          title="회원가입"
-          color="#000000"
-          onPress={handleSignup}
-        />
+        <Button title="회원가입" color="#000000" onPress={handleSignup} />
       </View>
       <TouchableOpacity style={styles.mem}>
-        <Text style={styles.memText} onPress={handleRegister}>로그인</Text>
+        <Text style={styles.memText} onPress={handleRegister}>
+          로그인
+        </Text>
       </TouchableOpacity>
     </View>
   );
