@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { loginUser } from "../../constants/login";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,34 +10,22 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import useLogin from "../../Hooks/auth/useLogin";
 
-export default function LoginScreen({ navigation }) {
-  const [id, Setid] = React.useState("");
-  const [password, Setpassword] = React.useState("");
-  const isValidInput = (input) => /^[a-zA-Z0-9]+$/.test(input);
-
+export default function LoginScreen({ navigation }: { navigation: any }) {
+  const { id, setId, password, setPassword, isValidInput, handleLogin } =
+    useLogin(navigation);
   const handleRegister = () => {
-    navigation.navigate('Signup');
-  };
-
-  const handleLogin = async () => {
-    if (id === "" || password === "") {
-      Alert.alert("경고", "아이디와 비밀번호를 입력하세요.");
-      return;
-    }
-    const success = await loginUser(id, password);
-    if (success === true) {
-      navigation.navigate('Main');
-    } else {
-      Alert.alert("경고", "로그인 정보가 맞지 않습니다");
-      return;
-    }
+    navigation.navigate("Signup");
   };
 
   return (
     <View style={styles.container}>
       <View>
-        <Image style={styles.image} source={require("../../assets/ch.png")}></Image>
+        <Image
+          style={styles.image}
+          source={require("../../assets/ch.png")}
+        ></Image>
       </View>
       <View>
         <Text style={styles.login}>로그인</Text>
@@ -49,7 +36,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
           style={styles.inputin}
           placeholder="아이디를 입력해주세요"
-          onChangeText={(text) => isValidInput(text) && Setid(text)}
+          onChangeText={(text) => isValidInput(text) && setId(text)}
         ></TextInput>
       </View>
       <View style={styles.input}>
@@ -57,21 +44,22 @@ export default function LoginScreen({ navigation }) {
         <TextInput
           style={styles.inputin}
           placeholder="비밀번호를 입력해주세요"
-          onChangeText={(text) => isValidInput(text) && Setpassword(text)}
+          onChangeText={(text) => isValidInput(text) && setPassword(text)}
           value={password}
           secureTextEntry
         ></TextInput>
       </View>
-      <View style={styles.bt} backgroundColor="#F0F0F0">
+      <View style={styles.bt}>
         <Button
-          style={styles.btin}
           title="로그인"
           color="black"
           onPress={handleLogin}
         ></Button>
       </View>
       <TouchableOpacity style={styles.mem}>
-        <Text style={styles.text} onPress={handleRegister}>회원가입</Text>
+        <Text style={styles.text} onPress={handleRegister}>
+          회원가입
+        </Text>
       </TouchableOpacity>
 
       <StatusBar style="auto" />
@@ -122,9 +110,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  btin: {
-    fontSize: 20,
-  },
   image: {
     width: 100,
     height: 100,
@@ -132,7 +117,7 @@ const styles = StyleSheet.create({
   mem: {
     marginLeft: 285,
     marginTop: 20,
-    marginBottom:170,
+    marginBottom: 170,
     fontSize: 20,
   },
   text: {

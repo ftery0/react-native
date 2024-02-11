@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TextInput, Button, Alert, Image, TouchableOpacity } from "react-native";
-import {CreatUser} from "../../constants/signup"
+import { CreatUser } from "../../constants/signup";
+import { ViewProps } from "react-native";
+import { ButtonProps } from "react-native";
 
-export default function RegisterScreen({ navigation }) {
+export default function RegisterScreen({ navigation }: { navigation: any }) {
   const [id, setId] = useState("");
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleRegister = () =>{
+  const handleRegister = () => {
     navigation.navigate('Login');
   }
 
@@ -23,20 +25,20 @@ export default function RegisterScreen({ navigation }) {
       Alert.alert("경고", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
       return;
     }
-    CreatUser(id,username,password);
+    CreatUser(id, username, password);
 
   };
 
   return (
     <View style={styles.container}>
-         <View>
+      <View>
         <Image style={styles.image} source={require("../../assets/ch.png")}></Image>
       </View>
       <View>
         <Text style={styles.text}>회원가입</Text>
       </View>
       <View>
-      <Text style={styles.id}>아이디</Text>
+        <Text style={styles.id}>아이디</Text>
         <TextInput
           style={styles.inputin}
           placeholder="아이디"
@@ -45,7 +47,7 @@ export default function RegisterScreen({ navigation }) {
         />
       </View>
       <View>
-      <Text style={styles.name}>이름</Text>
+        <Text style={styles.name}>이름</Text>
         <TextInput
           style={styles.inputin}
           placeholder="이름"
@@ -55,7 +57,7 @@ export default function RegisterScreen({ navigation }) {
         />
       </View>
       <View>
-      <Text style={styles.password}>비밀번호</Text>
+        <Text style={styles.password}>비밀번호</Text>
         <TextInput
           style={styles.inputin}
           placeholder="비밀번호"
@@ -65,7 +67,7 @@ export default function RegisterScreen({ navigation }) {
         />
       </View>
       <View>
-      <Text style={styles.password}>비밀번호 확인</Text>
+        <Text style={styles.password}>비밀번호 확인</Text>
         <TextInput
           style={styles.inputin}
           placeholder="비밀번호 확인"
@@ -74,10 +76,12 @@ export default function RegisterScreen({ navigation }) {
           secureTextEntry
         />
       </View>
-      <View style={styles.bt} backgroundColor="#F0F0F0">
-        <Button title="회원가입" 
-        style={styles.btin} color={"#000000"}
-         onPress={handleSignup} />
+      <View style={styles.bt}>
+        <Button
+          title="회원가입"
+          color="#000000"
+          onPress={handleSignup}
+        />
       </View>
       <TouchableOpacity style={styles.mem}>
         <Text style={styles.memText} onPress={handleRegister}>로그인</Text>
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 16,
   },
-  name:{
+  name: {
     marginBottom: 5,
     fontSize: 16,
   },
@@ -125,17 +129,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  btin: {
-    fontSize: 20,
-  },
   image: {
     width: 100,
     height: 100,
   },
   mem: {
-    marginTop:20,
+    marginTop: 20,
     marginLeft: 285,
-    marginBottom:200,
+    marginBottom: 200,
     fontSize: 20,
   },
   memText: {
