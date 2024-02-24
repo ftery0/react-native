@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,6 @@ import {
   Button,
   Image,
   TouchableOpacity,
-  Alert,
 } from "react-native";
 import useLogin from "../../Hooks/auth/useLogin";
 
@@ -124,5 +123,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "400",
     color: "gray",
+    
   },
 });
