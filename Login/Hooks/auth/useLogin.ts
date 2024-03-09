@@ -8,12 +8,11 @@ const UseLogin = (navigation:any) => { //일단 any
 
   const handleLogin = async () => {
     if (id === "" || password === "") {
-      
       alert("아이디와 비밀번호를 입력하세요.");
       return;
     }
 
-    const success = await axios.post("#",{id, password});
+    const success = await axios.post("http://localhost:8080/login",{id, password});
     if (success.status === 200) {
       navigation.navigate('Main');
     } else {
