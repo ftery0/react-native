@@ -1,2 +1,2 @@
 # react-native
-react native 공부!
+여행하며 공부하는 react native expo 
